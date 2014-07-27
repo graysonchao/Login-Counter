@@ -1,12 +1,23 @@
 {
   "name": "LoginCounter",
-  "version": "0.0.1",
-  "main": "server",
-  "engines": {
-    "node": ">=0.8.0"
-  },
+  "version": "0.0.0",
+  "description": "Counts Logins",
+  "main": "index.js",
   "dependencies": {
-    "hapi": "0.8.x"
+    "hapi": "^0.8.4"
   },
-  "private": "true"
+  "devDependencies": {},
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wirick/Login-Counter"
+  },
+  "author": "CRW",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wirick/Login-Counter/issues"
+  },
+  "homepage": "https://github.com/Wirick/Login-Counter"
 }
