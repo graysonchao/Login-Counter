@@ -16,6 +16,12 @@ server.route({
   handler: userController.default_page
 });
 
+server.route({
+  method: 'POST',
+  path: '/users',
+  handler: userController.find_user
+});
+
 server.start(function () {
   console.log('Server runing at port 8080');
 });

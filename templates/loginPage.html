@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-  </head>
-  <body>
+  <form action="/users" method="post">
     <div>
-      <h1>{{message}}</h1>
+      <label for='user'>Username:</label>
+      <input type='text' id='name' />
     </div>
-  </body>
+    <div>
+      <label for='password'>Password:</label>
+      <input type='text' id='pass' />
+    </div>
+    <div class='button'>
+      <button type='submit'>Login</button>
+    </div>
+  </form>
 </html>

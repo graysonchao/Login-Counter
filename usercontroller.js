@@ -1,12 +1,9 @@
-exports.findUser = function(request, reply) {
-  
+var userModel = require('./usermodel.js');
+
+exports.find_user = function(request, reply) {
+  reply.view('userpage');
 };
 
 exports.default_page = function(request, reply) {
-  var context = {
-    title: 'Login Page',
-    message: 'Please Log in'
-  };
-  reply.view('loginPage', context);
+  reply.view('loginPage');
 };
-
