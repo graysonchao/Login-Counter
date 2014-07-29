@@ -1,6 +1,6 @@
 var Hapi = require('hapi');
-var userController = require('./userController.js');
-
+var UserController = require('./userController.js').UserController;
+var userController = new UserController();
 var serverOptions = {
   views: {
     engines: { html: require('handlebars') },
@@ -13,13 +13,13 @@ var server = new Hapi.Server('0.0.0.0', 8080, serverOptions);
 server.route({
   method: 'GET',
   path: '/',
-  handler: userController.default_page
+  handler: userController.defaultPage
 });
 
 server.route({
   method: 'POST',
   path: '/users',
-  handler: userController.find_user,
+  handler: userController.requestLogin
 });
 
 server.start(function () {

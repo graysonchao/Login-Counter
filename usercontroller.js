@@ -1,17 +1,44 @@
 var userModel = require('./usermodel.js');
 
-exports.find_user = function(request, reply) {
-  var pass = request.payload['password'];
-  var usr = request.payload['user'];
-  userModel.findUser(usr, pass, function(error, obj) {
-    if (error) {
-      reply('This is a problem');
+UserController = function(){};
+
+UserController.prototype.requestLogin = function(request, reply) {
+  var user = request.payload['user']
+  var password = request.payload['password']
+  if (request.payload['new'] == "") {
+    userModel.findUser(user, function(error, logins) {
+    if (!logins) {
+      userModel.addLogin(user, password, function(error, login) {
+        if (error) {
+          reply("There was a problem adding this login.");
+        } else {
+          reply('loggedInPage');
+        }
+      });
     } else {
-      rely.view('userpage');
-    }
-  });
+      reply("This login already exists.");
+    }});
+    
+  } else {
+    userModel.findUser(user, function(error, obj) {
+      if (error) {
+        console.log(error);
+        reply('This login does not exist yet. Please register.');
+      } else {
+        userModel.loginUser(user, password, function(err, logins) {
+          if (err) {
+            reply("There was an error logging in");
+          } else {
+            reply(logins);
+          }
+        });
+      }
+    });
+  }
 };
 
-exports.default_page = function(request, reply) {
+UserController.prototype.defaultPage = function(request, reply) {
   reply.view('loginPage');
 };
+
+exports.UserController = UserController;
