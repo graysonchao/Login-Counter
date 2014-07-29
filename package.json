@@ -4,7 +4,10 @@
   "description": "Counts Logins",
   "main": "index.js",
   "dependencies": {
-    "hapi": "^0.8.4"
+    "handlebars": "^2.0.0-alpha.4",
+    "hapi": "^6.2.0",
+    "knex": "^0.6.22",
+    "pg": "^3.4.0"
   },
   "devDependencies": {},
   "scripts": {

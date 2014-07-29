@@ -7,4 +7,23 @@ var knex = require('knex')({
   }
 });
 
+exports.findUser = function(id, password, callback) {
+  var logins = knex.select(id, password).from('login_counter');
+  if (logins.length == 0) {
+    callback(error);
+  } else {
+    callback(null, logins);
+  }
+}
+
+exports.addLogin = function(uid, passwrd, callback) {
+  var logins = knex.select(uid, passwrd).from('login_counter');
+  if (logins.length < 0) {
+    callback(error);
+  } else {
+    knex('login_counter').insert({id: uid, password: passwrd, logins: '0'});
+    callback(null, '0');
+  }
+}
+
 
