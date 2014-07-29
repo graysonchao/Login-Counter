@@ -19,7 +19,14 @@ server.route({
 server.route({
   method: 'POST',
   path: '/users',
-  handler: userController.find_user
+  config: {
+    handler: userController.find_user,
+    payload: {
+      maxBytes: 209715200,
+      output: 'stream',
+      parse: true
+    }
+  }
 });
 
 server.start(function () {

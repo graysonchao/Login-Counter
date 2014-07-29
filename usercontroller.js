@@ -1,7 +1,7 @@
 var userModel = require('./usermodel.js');
 
 exports.find_user = function(request, reply) {
-  reply.view('userpage');
+  reply(request.headers); 
 };
 
 exports.default_page = function(request, reply) {
