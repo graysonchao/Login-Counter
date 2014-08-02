@@ -14,6 +14,7 @@ exports.loginUser = function(id, password, callback) {
     .then(function(rows) {
       callback(null, rows);
     })
+    .update({logins: logins + 1})
     .catch(function(error) {
       callback(error); 
     });

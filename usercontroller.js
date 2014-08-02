@@ -22,7 +22,6 @@ UserController.prototype.requestLogin = function(request, reply) {
   } else {
     userModel.findUser(user, function(error, obj) {
       if (error) {
-        console.log(error);
         reply('This login does not exist yet. Please register.');
       } else {
         userModel.loginUser(user, password, function(err, logins) {
