@@ -8,16 +8,21 @@ var knex = require('knex')({
 });
 
 exports.loginUser = function(id, password, callback) {
-  knex('user_info').where('id', id)
-    .andWhere('password', password)
-    .select('logins')
-    .then(function(rows) {
-      callback(null, rows);
-    })
-    .update({logins: logins + 1})
-    .catch(function(error) {
-      callback(error); 
-    });
+  exports.findUser(id, function (err, user) {
+    if (err) {
+      return callback(err);
+    }
+    knex('user_info')
+      .where('id', id)
+      .andWhere('password', password)
+      .increment('logins', 1)
+      .then(function(logins) {
+        callback(null, logins);
+      })
+      .catch(function(error) {
+        callback(error); 
+      });
+  })
 }
 
 exports.findUser = function(id, callback) {
